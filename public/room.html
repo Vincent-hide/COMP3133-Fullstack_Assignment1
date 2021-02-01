@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/room.css" />
+    <title>App</title>
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1><i class="far fa-comments"></i>Chat App</h1>
+        <a href="index.html">Leave Room</a>
+      </header>
+
+      <main>
+        <div>
+          <h3><i class="fas fa-person-booth"></i>Room Name:</h3>
+          <h2 id="room-name"></h2>
+
+          <h3><i class="fas fa-users"></i>Users</h3>
+          <ul id="userList"></ul>
+        </div>
+        <div id="messageBox"></div>
+      </main>
+
+      <div>
+        <form id="msgFrom">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button><i class="fas fa-paper-plane"></i>Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
