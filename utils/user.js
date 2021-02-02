@@ -1,36 +1,50 @@
+const fetch = require("node-fetch");
+
 const users = [];
 
 // Join user to chat
-function userJoin(id, username, room) {
-  const user = { id, username, room };
+const userJoin = (id, username, room) => {
+  const rand = Math.floor(Math.random() * 201) + 1; //  range: 1-200. used for pokemon icon id
+//   const api = `https://pokeapi.co/api/v2/pokemon/${rand}`;
+//   let userIcon;
+// 
+//   await fetch(api)
+//     .then(res => res.json())
+//     .then(data => {
+//       console.log(data.sprites.front_default);
+//       userIcon = data.sprites.front_default;
+//     })
+//     .catch(err => console.log("wooooooooo, something went terribly terribly wrong"));
+
+  const user = { id, username, room, rand };
 
   users.push(user);
 
   return user;
-}
+};
 
 // Get current user
-function getCurrentUser(id) {
-  return users.find(user => user.id === id);
-}
+const getCurrentUser = (id) => {
+  return users.find((user) => user.id === id);
+};
 
 // User leaves chat
-function userLeave(id) {
-  const index = users.findIndex(user => user.id === id);
+const userLeave = (id) => {
+  const index = users.findIndex((user) => user.id === id);
 
   if (index !== -1) {
     return users.splice(index, 1)[0];
   }
-}
+};
 
 // Get room users
-function getRoomUsers(room) {
-  return users.filter(user => user.room === room);
-}
+const getRoomUsers = (room) => {
+  return users.filter((user) => user.room === room);
+};
 
 module.exports = {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers
+  getRoomUsers,
 };
