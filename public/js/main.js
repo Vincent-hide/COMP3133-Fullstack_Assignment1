@@ -34,10 +34,7 @@ socket.on("roomUsers", ({ room, users }) => {
 });
 
 // receive message from a server
-socket.on("message", (data) => {
-  console.log(data)
-  outputMessage(data);
-});
+socket.on("message", (data) => outputMessage(data));
 
 // send message to a server
 msgFrom.submit((e) => {
@@ -61,23 +58,15 @@ msgFrom.submit((e) => {
 });
 
 // Output message to DOM
-const outputMessage = async ({ msg, user, rand }) => {
+const outputMessage = async ({ msg, user, userIcon }) => {
   let serverIcon = "img/ball.png";
-  const randNum = user[0].charCodeAt()
-  const api = `https://pokeapi.co/api/v2/pokemon/${randNum}`;
-  let img;
-  if(user !== "Server") {
-    await $.get(api, (res, status) => {
-      img = res.sprites.front_default
-    })
-  }
-    
-  const imgSize = user === "Server" ? 50 : 100
-
+  const imgSize = user === "Server" ? 40 : 80;
   let msgTag = $(`<div>
-                    <span><img width="${imgSize}" height="${imgSize}" src="${user === "Server" ? serverIcon : img}" alt="user-icon"></span>
+                    <span><img class="userIcon" width="${imgSize}" height="${imgSize}" src="${
+    user === "Server" ? serverIcon : userIcon
+  }" alt="user-icon"></span>
                     <span>${user}: </span>
                     <span>${msg}</span>
                   </div>`);
   $(msgTag).appendTo(messageBox);
-}
+};

@@ -3,20 +3,22 @@ const fetch = require("node-fetch");
 const users = [];
 
 // Join user to chat
-const userJoin = (id, username, room) => {
+const userJoin = async (id, username, room) => {
   const rand = Math.floor(Math.random() * 201) + 1; //  range: 1-200. used for pokemon icon id
-//   const api = `https://pokeapi.co/api/v2/pokemon/${rand}`;
-//   let userIcon;
-// 
-//   await fetch(api)
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log(data.sprites.front_default);
-//       userIcon = data.sprites.front_default;
-//     })
-//     .catch(err => console.log("wooooooooo, something went terribly terribly wrong"));
+  const api = `https://pokeapi.co/api/v2/pokemon/${rand}`;
+  let userIcon;
 
-  const user = { id, username, room, rand };
+  await fetch(api)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.sprites.front_default);
+      userIcon = data.sprites.front_default;
+    })
+    .catch((err) =>
+      console.log("wooooooooo, something went terribly terribly wrong")
+    );
+
+  const user = { id, username, room, userIcon };
 
   users.push(user);
 
