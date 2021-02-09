@@ -2,6 +2,8 @@ const roomName = $("#room-name");
 const userList = $("#userList");
 const messageBox = $("#messageBox");
 const msgFrom = $("#msgFrom");
+const msgInput = $("#msg");
+const typingMsg = $("#typingMsg");
 // Get username and room from URL
 const {username, room} = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
@@ -41,7 +43,23 @@ socket.on("roomUsers", ({room, users, prevMsg}) => {
 });
 
 // receive message from a server
-socket.on("message", (data) => outputMessage(data));
+socket.on("message", (data) => {
+  typingMsg.empty();
+  outputMessage(data);
+
+  // scroll view to down when the new msg comes
+  // messageBox.scrollTop = messageBox.scrollHeight;
+});
+
+// typing ...
+msgInput.bind("keypress", () => {
+  socket.emit("typing");
+});
+
+	socket.on("typing", data => {
+    console.log(data)
+		typingMsg.html(`<p class="text-gray-600"><i class="fas fa-typewriter mr-2"></i>${data.user} is typing a message...</p>`);
+	});
 
 // send message to a server
 msgFrom.submit((e) => {

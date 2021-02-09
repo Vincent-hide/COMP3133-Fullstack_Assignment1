@@ -1,6 +1,6 @@
-const socket_io = require("socket.io");
-const io = {};
-const client = {};
+// const socket_io = require("socket.io");
+// const io = {};
+// const client = {};
 const utils = require("../utils/user");
 
 const restaurantService = require("../service/restaurant");
@@ -9,10 +9,12 @@ module.exports = {
   initiate: (io) => {
     // Run when client connects
     io.on("connection", (socket) => {
-      socket.on("joinChat", async ({ username, room }) => {
+
+      socket.on("joinChat", async ({username, room}) => {
         const user = await utils.userJoin(socket.id, username, room);
         socket.join(user.room);
 
+        socket.username = user.username
         // // Welcome current user
         // socket.emit("message", { msg: "Hi", user: "Server" });
 
@@ -41,6 +43,10 @@ module.exports = {
 
         restaurantService.saveMsg({user: user.username, msg, room: user.room});
       });
+
+      socket.on("typing", () => {
+        socket.broadcast.emit("typing", {user: socket.username})
+      })
 
       // Runs when client disconnects
       socket.on("disconnect", () => {
