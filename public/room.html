@@ -1,57 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
-      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/room.css" />
-    <title>App</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- font awesome -->
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/room.css"/>
+  <title>App</title>
+</head>
+<body>
+<div class="container mx-auto mt-10">
+  <header class="flex">
+    <h1 class="w-full	text-blue-600 text-3xl text-center flex-grow-h-16"><i class="far fa-comments mr-3"></i>Chat App</h1>
+    <a class="text-center text-primary flex-grow-0 bg-white rounded shadow text-dark" href="index.html">Leave Room</a>
+  </header>
+
+  <main>
     <div>
-      <header>
-        <h1><i class="far fa-comments"></i>Chat App</h1>
-        <a href="index.html">Leave Room</a>
-      </header>
-
-      <main>
-        <div>
-          <h3><i class="fas fa-person-booth"></i>Room Name:</h3>
-          <h2 id="room-name"></h2>
-
-          <h3><i class="fas fa-users"></i>Users</h3>
-          <ul id="userList"></ul>
-        </div>
-        <div id="messageBox"></div>
-      </main>
-
-      <div>
-        <form id="msgFrom">
-          <input
-            id="msg"
-            type="text"
-            placeholder="Enter Message"
-            required
-            autocomplete="off"
-          />
-          <button><i class="fas fa-paper-plane"></i>Send</button>
-        </form>
+<!--            `<li class="bg-transparent-200 p-2 rounded shadow"><i class="far fa-id-badge mr-3"></i> ${username} - ID: ${id}</li>`
+-->
+      <h3 class="text-lg"><i class="fas fa-person-booth mr-3"></i>Room Name:</h3>
+      <div class="bg-secondary-200 p-5 rounded shadow">
+        <h2 id="room-name" class="bg-transparent-200 p-2 rounded shadow"></h2>
       </div>
+
+      <h3 class="text-lg"><i class="fas fa-users mr-3"></i>Users</h3>
+      <ul class="bg-primary rounded shadow p-5" id="userList"></ul>
     </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
-      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+    <div>
+      <h3 class="text-lg"><i class="far fa-comment-dots mr-3"></i>Messages</h3>
+      <ul class="bg-primary rounded shadow p-5" id="messageBox" style="overflow:scroll; height:400px;"></ul>
+    </div>
+  </main>
+
+  <div class="mt-10">
+    <form id="msgFrom" class="flex">
+      <!--  width: 80%  -->
+      <input
+        class="w-4/5 shadow appearance-none border rounded text-gray-700 px-3 leading-tight focus:outline-none focus:shadow-outline"
+        id="msg"
+        type="text"
+        placeholder="Enter Message"
+        required
+        autocomplete="off"
+      />
+      <!--  width: 20%  -->
+      <button class="w-1/5	bg-white hover:bg-blue-600 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow"><i class="fas fa-paper-plane mr-3"></i>Send</button>
+    </form>
+  </div>
+</div>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+  integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+  crossorigin="anonymous"
+></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>
