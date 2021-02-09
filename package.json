@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "tail_wind": "tailwindcss build style.css -o public/css/style.css",
     "start": "nodemon server.js"
   },
   "author": "",
@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.15",
     "node-fetch": "^2.6.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.1",
+    "tailwindcss": "^2.0.3"
   }
 }

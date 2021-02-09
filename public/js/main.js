@@ -17,10 +17,10 @@ const socket = io();
 socket.emit("joinChat", { username, room });
 
 // receive room with list of users
-socket.on("roomUsers", ({ room, users }) => {
+socket.on("roomUsers", ({ room, users, prevMsg }) => {
   console.log(`%c room: ${room}`, "color: lightgreen");
   console.log("users:", users);
-
+  console.log("previous msg", prevMsg)
   // output room name
   roomName.text(room);
 
@@ -31,6 +31,13 @@ socket.on("roomUsers", ({ room, users }) => {
       `<li><i class="far fa-id-badge"></i> ${username} - ID: ${id}</li>`
     );
   });
+
+  // prevMsg.forEach(msg => {
+  //   outputMessage({
+  //     msg,
+  //     user: "Server",
+  //   });
+  // });
 });
 
 // receive message from a server
